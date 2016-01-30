@@ -31,6 +31,9 @@
     for (int i = 3; i <= 300; i++) {
         fn = [f1 decimalNumberByAdding:f2];
         if (i % 10 == 0) {
+            NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i/10 inSection:0];
+            UITableViewCell * cell = [self.tableView dequeueReusableCellWithIdentifier:@"MainCell" forIndexPath:indexPath];
+            cell.textLabel.text = [NSString stringWithFormat:@"Number %d is %@", i, fn];
             NSLog(@"F%d =%@", i, fn);
         }
         f1 = f2;
@@ -46,24 +49,23 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 31;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainCell" forIndexPath:indexPath];
+    //NSLog(@"IndexPath %@", indexPath);
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
